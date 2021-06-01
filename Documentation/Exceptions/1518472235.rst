@@ -20,5 +20,12 @@ TYPO3 Exception 1518472235
    Solution
    --------
 
-   1. Did you find a solution?
-   2. Explain what you did ..
+   1. Check your Config for old user_functions
+   In a specific case, there was this problem. It happened after an Upgrade from V7 to V9 and has something to do with 404 handling.
+   Back in the days there was a way to make your own 404 handling by creating an user_function. In this case it was "PageNotFoundHandling"
+   If the extension, that handles it is not persistent anymore, simply remove it from your LocalConfiguration.php
+   
+   'FE'=>'pageNotFound_handling' => 'USER_FUNCTION:typo3conf/ext/xyz/PageNotFoundHandling.php:user_pageNotFound->pageNotFound',
+   
+   If removed, the normal PageNotFoundHandling will be enabled and you can use the Siteconfiguration to customize it.
+   
